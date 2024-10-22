@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 # See: https://packaging.python.org/en/latest/specifications/name-normalization/#name-format
-name = "iso10383"
+name = "ntfy-api"
 description = "A Python wrapper around the ntfy API."
 authors = [
     { name = "Tanner Corcoran", email = "tannerbcorcoran@gmail.com" },
