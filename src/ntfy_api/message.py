@@ -11,11 +11,27 @@ __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
 import io
+import sys
 import json
 import dataclasses
-from typing import *
+from typing import (
+    Annotated,
+    Any,
+    Union,
+    get_args,
+)
+from collections.abc import (
+    Callable,
+    Generator,
+    Iterable,
+    Sequence,
+)
+# not 3.11 because we need frozen_default
+if sys.version_info >= (3, 12):
+    from typing import dataclass_transform
+else:
+    from typing_extensions import dataclass_transform
 from types import MappingProxyType
-
 from ._internals import (
     _Unset,
     _UnsetType,
@@ -26,7 +42,7 @@ from .actions import _Action
 @dataclass_transform(eq_default=False, frozen_default=True)
 class _Message:
     """Message base class that is used to handle formatting"""
-    _context: MappingProxyType[str, Tuple[str, Callable[[Any], Any]]]
+    _context: MappingProxyType[str, tuple[str, Callable[[Any], Any]]]
 
     def __init_subclass__(cls) -> None:
         """Handle dataclass initialization and build the serialization
@@ -42,7 +58,7 @@ class _Message:
     @classmethod
     def _get_context(
         cls, annotation: type
-    ) -> Tuple[str, Callable[[Any], Any]]:
+    ) -> tuple[str, Callable[[Any], Any]]:
         """Get the context information from the given type annotation"""
         args = get_args(annotation)
         serializer: Callable[[Any], Any] = cls._default_serializer
@@ -71,7 +87,7 @@ class _Message:
 
         raise TypeError(f"Unknown type: {value.__class__.__name__!r}")
 
-    def _serialize(self) -> Generator[Tuple[str, Any], None, None]:
+    def _serialize(self) -> Generator[tuple[str, Any], None, None]:
         """Generate segments that will later be turned into a dictionary
         in `~.serialize`.
 
@@ -84,7 +100,7 @@ class _Message:
 
             yield (key, serializer(v))
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> dict[str, Any]:
         """Serialize this message into a header dictionary"""
         return dict(self._serialize())
 
@@ -198,16 +214,16 @@ class Message(_Message):
         _yn_serializer
     ] = _Unset
     data: Annotated[
-        Union[io.BufferedReader, Dict[str, Any], _UnsetType],
+        Union[io.BufferedReader, dict[str, Any], _UnsetType],
         "__data__",
         _ignore
     ] = _Unset
 
     def get_args(
         self
-    ) -> Tuple[
+    ) -> tuple[
         Union[str, None],
-        Dict[str, str],
+        dict[str, str],
         Union[io.BufferedReader, str, None]
     ]:
         """Get the topic, headers, and data (in that order)"""

@@ -1,4 +1,4 @@
-"""A wrapper around the data provided by the ISO 10383 specification.
+"""A wrapper around the ntfy API.
 
 :copyright: (c) 2024 Tanner Corcoran
 :license: Apache 2.0, see LICENSE for more details.

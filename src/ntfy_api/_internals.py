@@ -10,12 +10,16 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
+import sys
 from typing import (
-    final,
-    Self,
     Any,
     Literal,
+    final,
 )
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 
 
 @final

@@ -16,7 +16,7 @@ maintainers = [
 
 # See: https://packaging.python.org/en/latest/specifications/dependency-specifiers/#dependency-specifiers
 dependencies = [
-    "typing_extensions >= 4.0.0; python_version < '3.11'",
+    "typing_extensions >= 4.5.0; python_version < '3.12'",
 ]
 
 # See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
@@ -59,16 +59,13 @@ text = "Apache 2.0"
 
 # See: https://packaging.python.org/en/latest/specifications/pyproject-toml/#urls
 [project.urls]
-Homepage = "https://github.com/tanrbobanr/iso10383"
-Documentation = "https://github.com/tanrbobanr/iso10383/blob/main/README.md"
-Changelog = "https://github.com/tanrbobanr/iso10383/blob/main/CHANGELOG.md"
-License = "https://github.com/tanrbobanr/iso10383/blob/main/LICENSE"
-Source = "https://github.com/tanrbobanr/iso10383"
-"Bug Tracker" = "https://github.com/tanrbobanr/iso10383/issues"
+Homepage = "https://github.com/tanrbobanr/ntfy-api"
+Documentation = "https://github.com/tanrbobanr/ntfy-api/blob/main/README.md"
+Changelog = "https://github.com/tanrbobanr/ntfy-api/blob/main/CHANGELOG.md"
+License = "https://github.com/tanrbobanr/ntfy-api/blob/main/LICENSE"
+Source = "https://github.com/tanrbobanr/ntfy-api"
+"Bug Tracker" = "https://github.com/tanrbobanr/ntfy-api/issues"
 
 # See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 [tool.setuptools.dynamic]
-version = { attr = "iso10383.__version__" }
-
-[tool.setuptools.package-data]
-iso10383 = ["_data"]
+version = { attr = "ntfy_api.__version__" }

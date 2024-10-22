@@ -10,17 +10,24 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
+import sys
 import dataclasses
 from typing import (
-    dataclass_transform,
-    get_origin,
-    get_args,
     Annotated,
-    Union,
     Any,
-    Mapping,
-    Generator,
+    Union,
+    get_args,
+    get_origin,
 )
+from collections.abc import (
+    Generator,
+    Mapping,
+)
+# not 3.11 because we need frozen_default
+if sys.version_info >= (3, 12):
+    from typing import dataclass_transform
+else:
+    from typing_extensions import dataclass_transform
 from types import MappingProxyType
 
 from ._internals import (

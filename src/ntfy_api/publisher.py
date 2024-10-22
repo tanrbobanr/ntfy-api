@@ -11,10 +11,19 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
+import sys
 import base64
 import dataclasses
 import urllib.parse
-from typing import *
+from typing import (
+    Any,
+    ClassVar,
+    Union,
+)
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 from types import MappingProxyType
 
 import httpx
@@ -70,7 +79,7 @@ class NtfyPublisher:
 
     """
     ntfy_url: str
-    basic: Union[str, Tuple[str, str], None] = None
+    basic: Union[str, tuple[str, str], None] = None
     bearer: Union[str, None] = None
     _url: ClassVar[_NtfyURL]
     _auth_header: ClassVar[MappingProxyType[str, str]]

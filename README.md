@@ -7,7 +7,7 @@ A Python wrapper around the [ntfy](https://ntfy.sh) API.
 This package is in its early stages, and currently only supports sending
 messages:
 ```py
-from src.ntfy_api import *
+from ntfy_api import *
 
 
 # create NtfyPublisher instance
