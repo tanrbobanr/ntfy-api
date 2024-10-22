@@ -1,0 +1,74 @@
+# Metadata specifications: https://packaging.python.org/en/latest/specifications/section-distribution-metadata/
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# See: https://packaging.python.org/en/latest/specifications/name-normalization/#name-format
+name = "iso10383"
+description = "A Python wrapper around the ntfy API."
+authors = [
+    { name = "Tanner Corcoran", email = "tannerbcorcoran@gmail.com" },
+]
+maintainers = [
+    { name = "Tanner Corcoran", email = "tannerbcorcoran@gmail.com" },
+]
+
+# See: https://packaging.python.org/en/latest/specifications/dependency-specifiers/#dependency-specifiers
+dependencies = [
+    "typing_extensions >= 4.0.0; python_version < '3.11'",
+]
+
+# See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
+dynamic = [
+    "version",
+]
+keywords = [
+    "ntfy",
+    "nfty API",
+]
+requires-python = ">=3.9"
+
+# See: https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+    "Topic :: Utilities",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+# See: https://packaging.python.org/en/latest/specifications/pyproject-toml/#readme
+readme = "README.md"
+
+# See: https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+[project.license]
+text = "Apache 2.0"
+
+# See: https://packaging.python.org/en/latest/specifications/pyproject-toml/#urls
+[project.urls]
+Homepage = "https://github.com/tanrbobanr/iso10383"
+Documentation = "https://github.com/tanrbobanr/iso10383/blob/main/README.md"
+Changelog = "https://github.com/tanrbobanr/iso10383/blob/main/CHANGELOG.md"
+License = "https://github.com/tanrbobanr/iso10383/blob/main/LICENSE"
+Source = "https://github.com/tanrbobanr/iso10383"
+"Bug Tracker" = "https://github.com/tanrbobanr/iso10383/issues"
+
+# See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
+[tool.setuptools.dynamic]
+version = { attr = "iso10383.__version__" }
+
+[tool.setuptools.package-data]
+iso10383 = ["_data"]
