@@ -41,8 +41,8 @@ class _NtfyURL:
     fragment: str
 
     def __post_init__(self) -> None:
-        if not self.path.endswith("/"):
-            object.__setattr__(self, "path", self.path + "/")
+        if self.path.endswith("/"):
+            object.__setattr__(self, "path", self.path.rstrip("/"))
 
     @classmethod
     def parse(cls, url: str) -> Self:
@@ -62,7 +62,7 @@ class _NtfyURL:
         return self._unparse(self.path)
 
     def unparse_with_topic(self, topic: str) -> str:
-        return self._unparse(self.path + topic)
+        return self._unparse(self.path + "/" + topic.lstrip("/"))
 
 
 @dataclasses.dataclass(eq=False, frozen=True)
