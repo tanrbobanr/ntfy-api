@@ -116,14 +116,14 @@ class NtfyPublisher:
         # client
         object.__setattr__(self, "_client", httpx.Client())
 
-    def publish(self, msg: Message) -> None:
+    def publish(self, msg: Message) -> httpx.Response:
         """Publish a message using headers"""
         topic, headers, data = msg.get_args()
         url = (
             self._url.unparse_with_topic(topic)
             if topic else self._url.unparse()
         )
-        self._client.post(
+        return self._client.post(
             url=url,
             content=data,
             headers={**self._auth_header, **headers}
@@ -131,9 +131,9 @@ class NtfyPublisher:
 
     __lshift__ = publish
 
-    def publish_json(self, raw: dict[str, Any]) -> None:
+    def publish_json(self, raw: dict[str, Any]) -> httpx.Response:
         """Publish a message using JSON"""
-        self._client.post(
+        return self._client.post(
             url=self._url.unparse(),
             json=raw,
             headers=self._auth_header
