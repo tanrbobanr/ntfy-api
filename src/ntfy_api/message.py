@@ -77,6 +77,8 @@ class _Message:
 
         """
         if isinstance(value, str):
+            for o, n in (("\n", "n"), ("\r", "r"), ("\f", "f")):
+                value = value.replace(o, f"\\{n}")
             return value
 
         if isinstance(value, int):
