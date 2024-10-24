@@ -40,12 +40,13 @@ class _NtfyURL:
     query: str
     fragment: str
 
-    def __post_init__(self) -> None:
-        if self.path.endswith("/"):
-            object.__setattr__(self, "path", self.path.rstrip("/"))
-
     @classmethod
-    def parse(cls, url: str) -> Self:
+    def parse(cls, url: str, topic: Union[str, None] = None) -> Self:
+        s, n, p, r, q, f = urllib.parse.urlparse(url)
+        p = p.rstrip("/")
+        if topic:
+            topic = topic.rstrip("/")
+            p += f"/{topic}"
         return cls(*urllib.parse.urlparse(url))
 
     def _unparse(self, path: str) -> str:
@@ -70,7 +71,8 @@ class NtfyPublisher:
     """The class that handles publishing message instances (or JSON).
 
     Args:
-        ntfy_url: The URL of a ntfy server.
+        url: The URL of a ntfy server.
+        topic: The topic (if you wish to hard-code it into the URL).
         basic: Basic authentication. If defined, it may be either a
             base64-encoded username and password, or a tuple containing
             the username and password.
@@ -78,7 +80,8 @@ class NtfyPublisher:
             defined, `bearer` is used.
 
     """
-    ntfy_url: str
+    url: str
+    topic: Union[str, None] = None
     basic: Union[str, tuple[str, str], None] = None
     bearer: Union[str, None] = None
     _url: ClassVar[_NtfyURL]
@@ -87,7 +90,7 @@ class NtfyPublisher:
 
     def __post_init__(self) -> None:
         # url
-        object.__setattr__(self, "_url", _NtfyURL.parse(self.ntfy_url))
+        object.__setattr__(self, "_url", _NtfyURL.parse(self.url, self.topic))
 
         # handle auth
         def _set_header(type: str, value: str) -> None:

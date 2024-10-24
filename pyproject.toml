@@ -69,3 +69,6 @@ Source = "https://github.com/tanrbobanr/ntfy-api"
 # See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 [tool.setuptools.dynamic]
 version = { attr = "ntfy_api.__version__" }
+
+[tool.setuptools.package-data]
+ntfy_api = ["py.typed"]
