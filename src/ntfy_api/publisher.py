@@ -47,7 +47,7 @@ class _NtfyURL:
         if topic:
             topic = topic.rstrip("/")
             p += f"/{topic}"
-        return cls(*urllib.parse.urlparse(url))
+        return cls(s, n, p, r, q, f)
 
     def _unparse(self, path: str) -> str:
         return urllib.parse.urlunparse((
