@@ -32,11 +32,11 @@ if sys.version_info >= (3, 12):
 else:
     from typing_extensions import dataclass_transform
 from types import MappingProxyType
-from ._internals import (
+from .._internals import (
     _Unset,
     _UnsetType,
 )
-from .actions import _Action
+from ..actions import _Action
 
 
 @dataclass_transform(eq_default=False, frozen_default=True)
@@ -50,7 +50,7 @@ class _Message:
 
         """
         cls._context = MappingProxyType({
-            k:cls._get_context(a)
+            k: cls._get_context(a)
             for k, a in cls.__annotations__.items()
         })
         dataclasses.dataclass(eq=False, frozen=True)(cls)
@@ -150,6 +150,7 @@ class Message(_Message):
             - If using templating, the template data.
 
     """
+
     def __post_init__(self) -> None:
         if self.templating is not _Unset and self.filename is not _Unset:
             raise ValueError(
@@ -160,7 +161,7 @@ class Message(_Message):
     @staticmethod
     def _ignore(value: Any) -> Any:
         return value
-    
+
     @staticmethod
     def _tags_serializer(value: Sequence[str]) -> str:
         return ",".join(value)
@@ -233,5 +234,5 @@ class Message(_Message):
         topic = serialized.pop("__topic__", None)
         data = serialized.pop("__data__", None)
         if data and self.templating is True:
-            data = json.dumps(data, separators=(",",";"))
+            data = json.dumps(data, separators=(",", ";"))
         return (topic, serialized, data)

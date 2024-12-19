@@ -11,59 +11,19 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
-import sys
 import base64
 import dataclasses
-import urllib.parse
 from typing import (
     Any,
     ClassVar,
     Union,
 )
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self
 from types import MappingProxyType
 
 import httpx
 
 from .message import Message
-
-
-@dataclasses.dataclass(eq=False, frozen=True)
-class _NtfyURL:
-    scheme: str
-    netloc: str
-    path: str
-    params: str
-    query: str
-    fragment: str
-
-    @classmethod
-    def parse(cls, url: str, topic: Union[str, None] = None) -> Self:
-        s, n, p, r, q, f = urllib.parse.urlparse(url)
-        p = p.rstrip("/")
-        if topic:
-            topic = topic.rstrip("/")
-            p += f"/{topic}"
-        return cls(s, n, p, r, q, f)
-
-    def _unparse(self, path: str) -> str:
-        return urllib.parse.urlunparse((
-            self.scheme,
-            self.netloc,
-            path,
-            self.params,
-            self.query,
-            self.fragment,
-        ))
-
-    def unparse(self) -> str:
-        return self._unparse(self.path)
-
-    def unparse_with_topic(self, topic: str) -> str:
-        return self._unparse(self.path + "/" + topic.lstrip("/"))
+from .._url import NtfyURL
 
 
 @dataclasses.dataclass(eq=False, frozen=True)
@@ -84,13 +44,13 @@ class NtfyPublisher:
     topic: Union[str, None] = None
     basic: Union[str, tuple[str, str], None] = None
     bearer: Union[str, None] = None
-    _url: ClassVar[_NtfyURL]
+    _url: ClassVar[NtfyURL]
     _auth_header: ClassVar[MappingProxyType[str, str]]
     _client: ClassVar[httpx.Client]
 
     def __post_init__(self) -> None:
         # url
-        object.__setattr__(self, "_url", _NtfyURL.parse(self.url, self.topic))
+        object.__setattr__(self, "_url", NtfyURL.parse(self.url, self.topic))
 
         # handle auth
         def _set_header(type: str, value: str) -> None:
