@@ -11,6 +11,7 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
+import sys
 import logging
 import json
 import base64
@@ -21,8 +22,10 @@ from typing import (
     Union,
 )
 from types import MappingProxyType
-from typing import Self
-
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 import httpx
 from websockets.sync.client import connect as ws_connect
 
