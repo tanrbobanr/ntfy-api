@@ -174,14 +174,15 @@ class NtfySubscriber:
                 except (AttributeError, TypeError, ValueError) as e:
                     logger.warning("Error parsing message data: %s", e)
                     continue
-                except Exception as e:
-                    logger.error("Fatal error occurred: %s", e)
-                    break
+
+    def _check_status(self, response: httpx.Response):
+        """Automatically checks the HTTP status and raises an exception if it's not successful."""
+        response.raise_for_status()
 
     def _ensure_client(self) -> None:
         """Ensure HTTP client is initialized."""
         if self._client is None or self._client.is_closed:
-            object.__setattr__(self, "_client", httpx.Client())
+            object.__setattr__(self, "_client", httpx.Client(event_hooks={"response": [self._check_status]}))
 
     def poll(self) -> Generator[MessageData, None, None]:
         """Poll for messages using HTTP connection.
@@ -196,10 +197,6 @@ class NtfySubscriber:
         self._ensure_client()
 
         with self._client.stream("GET", url, headers=headers) as response:
-            if response.status_code not in {200, 201, 202, 206}:
-                logger.error("HTTP request failed with status code: %d", response.status_code)
-                return
-
             logger.debug("Connected to %s with status code %d", url, response.status_code)
 
             for line in response.iter_lines():

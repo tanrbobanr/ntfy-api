@@ -78,7 +78,7 @@ class NtfyPublisher:
             object.__setattr__(self, "_auth_header", MappingProxyType({}))
 
         # client
-        object.__setattr__(self, "_client", httpx.Client())
+        object.__setattr__(self, "_client", httpx.Client(event_hooks={"response": [self._check_status]}))
 
     def __enter__(self) -> Self:
         """Enter the context manager protocol.
@@ -91,6 +91,10 @@ class NtfyPublisher:
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
         """Exit the context manager protocol, ensuring the client is closed."""
         self.close()
+
+    def _check_status(self, response: httpx.Response):
+        """Automatically checks the HTTP status and raises an exception if it's not successful."""
+        response.raise_for_status()
 
     def publish(self, msg: Message) -> httpx.Response:
         """Publish a message using headers"""
