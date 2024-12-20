@@ -92,7 +92,7 @@ class NtfyPublisher:
         """Exit the context manager protocol, ensuring the client is closed."""
         self.close()
 
-    def _check_status(self, response: httpx.Response):
+    def _check_status(self, response: httpx.Response) -> None:
         """Automatically checks the HTTP status and raises an exception if it's not successful."""
         response.raise_for_status()
 
