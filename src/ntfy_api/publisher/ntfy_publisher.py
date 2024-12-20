@@ -19,6 +19,7 @@ from typing import (
     Union,
 )
 from types import MappingProxyType
+from typing import Self
 
 import httpx
 
@@ -78,6 +79,18 @@ class NtfyPublisher:
 
         # client
         object.__setattr__(self, "_client", httpx.Client())
+
+    def __enter__(self) -> Self:
+        """Enter the context manager protocol.
+
+        Returns:
+            NtfyPublisher: The publisher instance
+        """
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        """Exit the context manager protocol, ensuring the client is closed."""
+        self.close()
 
     def publish(self, msg: Message) -> httpx.Response:
         """Publish a message using headers"""

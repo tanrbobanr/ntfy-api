@@ -21,6 +21,7 @@ from typing import (
     Union,
 )
 from types import MappingProxyType
+from typing import Self
 
 import httpx
 from websockets.sync.client import connect as ws_connect
@@ -67,6 +68,7 @@ class NtfySubscriber:
     tags_filter: Union[str, _UnsetType] = _Unset
     _url: ClassVar[NtfyURL]
     _auth_header: ClassVar[MappingProxyType[str, str]]
+    _client: ClassVar[httpx.Client]
 
     def __post_init__(self) -> None:
         # URL parsing
@@ -95,6 +97,21 @@ class NtfySubscriber:
             raise ValueError("Invalid basic credentials")
         else:
             object.__setattr__(self, "_auth_header", MappingProxyType({}))
+
+        # HTTP client
+        object.__setattr__(self, "_client", None)
+
+    def __enter__(self) -> Self:
+        """Enter the context manager protocol.
+
+        Returns:
+            Self: The subscriber instance
+        """
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        """Exit the context manager protocol, ensuring the client is closed."""
+        self.close()
 
     def _build_headers(self) -> dict[str, str]:
         """Build headers dictionary from instance attributes."""
@@ -161,6 +178,11 @@ class NtfySubscriber:
                     logger.error("Fatal error occurred: %s", e)
                     break
 
+    def _ensure_client(self) -> None:
+        """Ensure HTTP client is initialized."""
+        if self._client is None or self._client.is_closed:
+            object.__setattr__(self, "_client", httpx.Client())
+
     def poll(self) -> Generator[MessageData, None, None]:
         """Poll for messages using HTTP connection.
 
@@ -171,22 +193,28 @@ class NtfySubscriber:
         headers = self._build_headers()
         headers["X-Poll"] = "1"
 
-        with httpx.Client() as client:
-            with client.stream("GET", url, headers=headers) as response:
-                if response.status_code not in {200, 201, 202, 206}:
-                    logger.error("HTTP request failed with status code: %d", response.status_code)
-                    return
+        self._ensure_client()
 
-                logger.debug("Connected to %s with status code %d", url, response.status_code)
+        with self._client.stream("GET", url, headers=headers) as response:
+            if response.status_code not in {200, 201, 202, 206}:
+                logger.error("HTTP request failed with status code: %d", response.status_code)
+                return
 
-                for line in response.iter_lines():
-                    if line:
-                        try:
-                            data = json.loads(line)
-                            yield _MessageData.from_json(data)
-                        except json.JSONDecodeError as e:
-                            logger.warning("Error decoding message: %s", e)
-                            continue
-                        except (AttributeError, TypeError, ValueError) as e:
-                            logger.warning("Error parsing message data: %s", e)
-                            continue
+            logger.debug("Connected to %s with status code %d", url, response.status_code)
+
+            for line in response.iter_lines():
+                if line:
+                    try:
+                        data = json.loads(line)
+                        yield _MessageData.from_json(data)
+                    except json.JSONDecodeError as e:
+                        logger.warning("Error decoding message: %s", e)
+                        continue
+                    except (AttributeError, TypeError, ValueError) as e:
+                        logger.warning("Error parsing message data: %s", e)
+                        continue
+
+    def close(self) -> None:
+        """Close the httpx.Client instance"""
+        if hasattr(self, '_client') and not self._client.is_closed:
+            self._client.close()
