@@ -26,8 +26,15 @@ from .enums import (
     HTTPMethod,
     Tag,
 )
-from .message import Message
-from .publisher import NtfyPublisher
+from .publisher import (
+    Message,
+    NtfyPublisher,
+)
+from .subscriber import (
+    Attachment,
+    MessageData,
+    NtfySubscriber,
+)
 
 
 __all__ = (
@@ -39,4 +46,7 @@ __all__ = (
     "Tag",
     "Message",
     "NtfyPublisher",
+    "Attachment",
+    "MessageData",
+    "NtfySubscriber",
 )

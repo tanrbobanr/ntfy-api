@@ -4,8 +4,8 @@ A Python wrapper around the [ntfy](https://ntfy.sh) API.
 `$ pip install ntfy-api`
 
 # Usage
-This package is in its early stages, and currently only supports sending
-messages:
+This package supports sending and receiving messages. Here is an example of how to send a message:
+
 ```py
 from ntfy_api import *
 
@@ -41,4 +41,27 @@ ntfy_pub.publish(msg)
 # OR
 
 ntfy_pub << msg
+```
+
+For polling or subscribing:
+
+```py
+from ntfy_api import *
+
+
+# create NtfyPublisher instance
+ntfy_sub = NtfySubscriber("https://ntfy.example.com", topic="your-topic", basic=..., bearer=...)
+
+# poll messages or subscribe by replacing poll() with subscribe()
+for message in ntfy_sub.poll():
+    if message and message.event == "message":
+        print('>> Message received <<')
+        print(f'Title: {message.title}')
+        print(f'Message: {message.message}')
+        print(f'Click: {message.click}')
+        if message.attachment:
+            att = message.attachment
+            print(f'Attachments: {att}')
+    else:
+        print(message)
 ```
