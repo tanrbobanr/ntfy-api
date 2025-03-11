@@ -9,10 +9,10 @@ except Exception:
 
 import _misc
 
-from ntfy_api.__package_info__ import __author__ as pkg_author
-from ntfy_api.__package_info__ import __copyright__ as pkg_copyright
-from ntfy_api.__package_info__ import __title__ as pkg_title
-from ntfy_api.__package_info__ import __version__ as pkg_version
+from ntfy_api.__version__ import __author__ as pkg_author
+from ntfy_api.__version__ import __copyright__ as pkg_copyright
+from ntfy_api.__version__ import __title__ as pkg_title
+from ntfy_api.__version__ import __version__ as pkg_version
 
 HTML_BASEURL = "https://docs.tannercorcoran.dev/python/ntfy-api"
 

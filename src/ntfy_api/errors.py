@@ -3,7 +3,7 @@ from typing import Union
 
 import httpx
 
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 
 __all__ = ("APIError",)
 

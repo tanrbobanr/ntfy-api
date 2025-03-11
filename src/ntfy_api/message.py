@@ -18,7 +18,7 @@ else:  # pragma: no cover
 
 from types import MappingProxyType
 
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 from ._internals import WrappingDataclass, _unwrap_static
 from .actions import (
     ReceivedAction,

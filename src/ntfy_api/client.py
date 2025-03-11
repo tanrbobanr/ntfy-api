@@ -20,7 +20,7 @@ else:  # pragma: no cover
 
 import httpx
 
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 from ._internals import URL, StrTuple
 from .creds import Credentials
 from .errors import APIError

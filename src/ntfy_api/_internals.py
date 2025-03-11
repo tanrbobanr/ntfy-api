@@ -32,7 +32,7 @@ if sys.version_info >= (3, 10):  # pragma: no cover
 else:  # pragma: no cover
     from typing_extensions import TypeAlias
 
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 
 _T = TypeVar("_T")
 StrTuple: TypeAlias = Union[tuple[str], tuple[str, ...]]

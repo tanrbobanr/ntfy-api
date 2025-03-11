@@ -5,7 +5,7 @@
 
 """
 
-from .__package_info__ import *
+from .__version__ import *
 from .actions import *
 from .client import *
 from .creds import *

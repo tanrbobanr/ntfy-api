@@ -10,7 +10,7 @@ import dataclasses
 from types import MappingProxyType
 from typing import Literal, Union
 
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 
 __all__ = ("Credentials",)
 

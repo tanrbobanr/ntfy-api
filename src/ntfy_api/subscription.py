@@ -21,7 +21,7 @@ else:  # pragma: no cover
 from websockets import exceptions as ws_exc
 from websockets.sync import client as ws_client
 
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 from ._internals import URL, ClearableQueue, StrTuple
 from .creds import Credentials
 from .filter import Filter
