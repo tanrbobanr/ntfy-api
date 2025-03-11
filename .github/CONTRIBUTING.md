@@ -181,16 +181,16 @@ file is new, however, the current year should be used.
 
 #### Package Information
 
-Package information is defined within the top-level `__package_info__.py` file
+Package information is defined within the top-level `__version__.py` file
 within the package. Each file within the package must import all content within
-the `__package_info__` module with the following:
+the `__version__` module with the following:
 
 ```py
-from .__package_info__ import *  # noqa: F401,F403
+from .__version__ import *  # noqa: F401,F403
 ```
 
 Note:
-- `__package_info__` is a relative import, so the statement will need to be
+- `__version__` is a relative import, so the statement will need to be
     slightly changed depending on the location of the file importing it.
 
 - The `noqa` statement is not required within `__init__.py` files, as both the
@@ -216,17 +216,17 @@ following the format specified in
 ### Attribution
 
 If you are a new contributor, add your full name (first and last), a link to
-your GitHub user, and contact email to the **bottom** of
+your GitHub user, your contact email, and year/month to the **bottom** of
 [the contributors file](../CONTRIBUTORS.md). Do so in the pull request that
 would warrant an attribution (i.e. your first code contribution pull request).
 The line should be formatted as follows (using your own details instead):
 
-> `- Tanner Corcoran [@tanrbobanr](https://github.com/tanrbobanr) <tannerbcorcoran@gmail.com>`
+> `- Tanner Corcoran [@tanrbobanr](https://github.com/tanrbobanr) <tannerbcorcoran@gmail.com> (2024-05)`
 
 If you are not comfortable using your full name, you may instead use your
 GitHub username:
 
-> `- tanrbobanr [@tanrbobanr](https://github.com/tanrbobanr) <tannerbcorcoran@gmail.com>`
+> `- tanrbobanr [@tanrbobanr](https://github.com/tanrbobanr) <tannerbcorcoran@gmail.com> (2024-11)`
 
 ## Bug Reports
 
