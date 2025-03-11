@@ -6,7 +6,7 @@ This page contains reference to this package's internals.
 Classes
 -------
 
-.. autoclass:: ntfy_api.__package_info__._version_info
+.. autoclass:: ntfy_api.__version__._version_info
     :show-inheritance:
 
     .. autoproperty:: major

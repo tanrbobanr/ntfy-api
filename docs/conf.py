@@ -100,12 +100,12 @@ viewcode_output_dirname = "modules"  # added by _misc.ext.viewcode_outdir
 coverage_modules = ("ntfy_api",)
 coverage_ignore = (
     "ntfy_api",
-    "ntfy_api.__package_info__",
-    "ntfy_api.__package_info__.__all__",
-    "ntfy_api.__package_info__._version_info.__copy__",
-    "ntfy_api.__package_info__._version_info.__deepcopy__",
-    "ntfy_api.__package_info__._version_info.__instance",
-    "ntfy_api.__package_info__._version_info.__new__",
+    "ntfy_api.__version__",
+    "ntfy_api.__version__.__all__",
+    "ntfy_api.__version__._version_info.__copy__",
+    "ntfy_api.__version__._version_info.__deepcopy__",
+    "ntfy_api.__version__._version_info.__instance",
+    "ntfy_api.__version__._version_info.__new__",
     "ntfy_api._internals",
     "ntfy_api._internals.ClearableQueue.queue",
     "ntfy_api._internals.StrTuple",

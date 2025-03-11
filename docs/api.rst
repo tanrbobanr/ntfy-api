@@ -283,43 +283,43 @@ Classes
 Constants
 ---------
 
-.. autodata:: ntfy_api.__package_info__.__author__
+.. autodata:: ntfy_api.__version__.__author__
 
 
-.. autodata:: ntfy_api.__package_info__.__author_email__
+.. autodata:: ntfy_api.__version__.__author_email__
 
 
-.. autodata:: ntfy_api.__package_info__.__cookie__
+.. autodata:: ntfy_api.__version__.__cookie__
 
 
-.. autodata:: ntfy_api.__package_info__.__copyright__
+.. autodata:: ntfy_api.__version__.__copyright__
 
 
-.. autodata:: ntfy_api.__package_info__.__description__
+.. autodata:: ntfy_api.__version__.__description__
 
 
-.. autodata:: ntfy_api.__package_info__.__download_url__
+.. autodata:: ntfy_api.__version__.__download_url__
 
 
-.. autodata:: ntfy_api.__package_info__.__email__
+.. autodata:: ntfy_api.__version__.__email__
 
 
-.. autodata:: ntfy_api.__package_info__.__license__
+.. autodata:: ntfy_api.__version__.__license__
 
 
-.. autodata:: ntfy_api.__package_info__.__title__
+.. autodata:: ntfy_api.__version__.__title__
 
 
-.. autodata:: ntfy_api.__package_info__.__url__
+.. autodata:: ntfy_api.__version__.__url__
 
 
-.. autodata:: ntfy_api.__package_info__.__version__
+.. autodata:: ntfy_api.__version__.__version__
 
 
-.. autodata:: ntfy_api.__package_info__.__release__
+.. autodata:: ntfy_api.__version__.__release__
 
 
-.. autodata:: ntfy_api.__package_info__.version_info
+.. autodata:: ntfy_api.__version__.version_info
 
 Exceptions
 ----------
