@@ -61,11 +61,6 @@ init-build: init-dev
 
 
 # --- main rules -------------------------------------------------------
-# ensure package version is new
-.PHONY: package-version-check
-package-version-check: init-build
-	$(PYEXE) vercheck.py
-
 # run tests
 .PHONY: tests
 # we don't need init-test here because tox will install the test
