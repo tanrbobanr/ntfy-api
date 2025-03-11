@@ -121,18 +121,18 @@ class _version_info(tuple[int, int, int, int, int, int]):  # pragma: no cover
     :py:obj:`sys.version_info`. Acts as a singleton.
 
     Composed of :meth:`major`, :meth:`minor`, :meth:`micro`,
-    :meth:`pre`, :meth:`post`, and :meth:`dev` versions (in that order).
+    :meth:`rc`, :meth:`post`, and :meth:`dev` versions (in that order).
 
     """
 
     __instance: Self
 
     def __new__(
-        cls, major: int, minor: int, micro: int, pre: int, post: int, dev: int
+        cls, major: int, minor: int, micro: int, rc: int, post: int, dev: int
     ) -> Self:
         if not hasattr(cls, "_version_info__instance"):
             cls.__instance = super().__new__(
-                cls, (major, minor, micro, pre, post, dev)
+                cls, (major, minor, micro, rc, post, dev)
             )
         return cls.__instance
 
@@ -147,7 +147,7 @@ class _version_info(tuple[int, int, int, int, int, int]):  # pragma: no cover
             "major",
             "minor",
             "micro",
-            "pre",
+            "rc",
             "post",
             "dev",
         )
@@ -168,8 +168,8 @@ class _version_info(tuple[int, int, int, int, int, int]):  # pragma: no cover
         return self[2]
 
     @property
-    def pre(self) -> int:
-        """The pre-release version."""
+    def rc(self) -> int:
+        """The release candidate version."""
         return self[3]
 
     @property
@@ -191,7 +191,7 @@ class _version_info(tuple[int, int, int, int, int, int]):  # pragma: no cover
         optional_part = "".join(
             f".{k}{v}"
             for k, v in {
-                "pre": self[3],
+                "rc": self[3],
                 "post": self[4],
                 "dev": self[5],
             }.items()
