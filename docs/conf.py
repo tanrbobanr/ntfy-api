@@ -37,6 +37,7 @@ extensions = [
     # external
     "sphinx_paramlinks",
     "sphinxcontrib_trio",
+    "myst_parser",
     # custom
     "_misc.ext.autoivar",
     "_misc.ext.autocvar",

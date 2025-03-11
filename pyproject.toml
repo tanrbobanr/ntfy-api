@@ -50,13 +50,12 @@ text = "Apache 2.0"
 
 [project.urls]
 Changelog = "https://github.com/tanrbobanr/ntfy-api/blob/main/CHANGELOG.md"
-Documentation = "https://github.com/tanrbobanr/ntfy-api/blob/main/README.md"
-Homepage = "https://github.com/tanrbobanr/ntfy-api"
+Documentation = "https://docs.tannercorcoran.dev/python/ntfy-api"
 Issues = "https://github.com/tanrbobanr/ntfy-api/issues"
 Source = "https://github.com/tanrbobanr/ntfy-api"
 
 [tool.setuptools.dynamic]
-version = { attr = "ntfy_api.__version__.__version__" }
+version = { attr = "ntfy_api.__version__.__release__" }
 
 [tool.setuptools.package-data]
 ntfy_api = ["py.typed"]

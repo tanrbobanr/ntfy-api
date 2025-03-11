@@ -3,3 +3,4 @@ sphinx
 sphinxcontrib-trio
 furo
 sphinx-paramlinks
+myst_parser
