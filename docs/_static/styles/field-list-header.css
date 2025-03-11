@@ -1,0 +1,8 @@
+/* change the field list header (e.g. "PARAMETERS", anything made with
+the `rubric` directive, etc) to look more natural */
+dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) .field-list > dt {
+    color: var(--color-api-overall) !important;
+    font-family: var(--font-stack--monospace) !important;
+    font-weight: 700 !important;
+    text-transform: none;
+}

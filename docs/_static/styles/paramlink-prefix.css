@@ -1,0 +1,7 @@
+/* adds a space before sphinx-paramlinks link icon */
+a.paramlink::before {
+    content: "\20";
+    white-space: pre;
+    display: inline-block;
+    text-decoration: none;
+}

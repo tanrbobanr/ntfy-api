@@ -1,0 +1,6 @@
+# all requirements for those who don't feel like choosing during development
+-r requirements.txt
+-r requirements-build.txt
+-r requirements-tox.txt
+-r requirements-dev.txt
+-r docs/requirements.txt

@@ -1,0 +1,4 @@
+/* change signature parameter color to stand out better */
+em.sig-param > span.n:first-of-type {
+    color: #90cbeb;
+}

@@ -5,15 +5,47 @@
 
 """
 
-__author__ = "Tanner Corcoran"
-__license__ = "Apache 2.0 License"
-__copyright__ = "Copyright (c) 2024 Tanner Corcoran"
-
-
 import enum
+import sys
+
+if sys.version_info >= (3, 11):  # pragma: no cover
+    StrEnum = enum.StrEnum
+    IntEnum = enum.IntEnum
+else:  # pragma: no cover
+
+    class StrEnum(str, enum.Enum):
+        pass
+
+    class IntEnum(enum.IntEnum):
+        def __str__(self) -> str:
+            return str(self.value)
 
 
-class HTTPMethod(enum.StrEnum):
+from .__package_info__ import *  # noqa: F401,F403
+
+__all__ = (
+    "Event",
+    "HTTPMethod",
+    "Priority",
+    "Tag",
+)
+
+
+class Event(StrEnum):
+    """Represents an event in :class:`.ReceivedMessage`
+    instances.
+
+    """
+
+    open = "open"
+    message = "message"
+    keepalive = "keepalive"
+    poll_request = "poll_request"
+
+
+class HTTPMethod(StrEnum):
+    """Represents an HTTP method (e.g. GET, POST, and so on)."""
+
     get = "GET"
     post = "POST"
     put = "PUT"
@@ -21,7 +53,12 @@ class HTTPMethod(enum.StrEnum):
     patch = "PATCH"
 
 
-class Priority(enum.IntEnum):
+class Priority(IntEnum):
+    """Represents message priority in :class:`.Message` and
+    :class:`.ReceivedMessage`.
+
+    """
+
     min = 1
     low = 2
     default = 3
@@ -29,7 +66,12 @@ class Priority(enum.IntEnum):
     urgent = 5
 
 
-class Tag(enum.StrEnum):
+class Tag(StrEnum):
+    """Represents message tags in :class:`.Message` and
+    :class:`.ReceivedMessage`.
+
+    """
+
     grinning = "grinning"
     smiley = "smiley"
     smile = "smile"
@@ -1675,7 +1717,9 @@ class Tag(enum.StrEnum):
     guadeloupe = "guadeloupe"
     equatorial_guinea = "equatorial_guinea"
     greece = "greece"
-    south_georgia_south_sandwich_islands = "south_georgia_south_sandwich_islands"
+    south_georgia_south_sandwich_islands = (
+        "south_georgia_south_sandwich_islands"
+    )
     guatemala = "guatemala"
     guam = "guam"
     guinea_bissau = "guinea_bissau"

@@ -1,0 +1,1 @@
+{"code":40033,"http":400,"error":"invalid request: phone number invalid","link":"https://ntfy.sh/docs/publish/#phone-calls"}

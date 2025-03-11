@@ -1,0 +1,5 @@
+# requirements for building documentation
+sphinx
+sphinxcontrib-trio
+furo
+sphinx-paramlinks

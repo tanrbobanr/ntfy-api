@@ -1,0 +1,113 @@
+name: Bug Report
+description: File a bug report.
+title: "[Short summary of the bug goes here]"
+labels: ["bug"]
+body:
+  # thanks
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in the project and taking the time to fill out this bug report!
+
+  # contact info
+  - type: input
+    id: contact
+    attributes:
+      label: Contact details
+      description: How can we get in touch with you if we need more information?
+      placeholder: e.g. email@example.com
+    validations:
+      required: false
+
+  # expected result
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: Expected result
+      description: What was the expected result?
+      placeholder: Expected result...
+    validations:
+      required: true
+
+  # actual result
+  - type: textarea
+    id: actual-result
+    attributes:
+      label: Actual result
+      description: What result did you actually get?
+      placeholder: Actual result...
+    validations:
+      required: true
+
+  # logs
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: If logs or traceback is available, paste it here. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+    validations:
+      required: false
+
+  # reproduction steps
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to reproduce
+      description: What are the steps to reproduce this bug?
+      placeholder: 
+    validations:
+      required: true
+
+  # operating system
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating system
+      description: Which operating system were you using when you experienced the bug?
+      placeholder: e.g. Linux Mint Virginia 21.3 Xfce
+    validations:
+      required: true
+
+  # python version
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      description: Which Python version were you using when you experienced the bug?
+      placeholder: e.g. 3.13
+    validations:
+      required: true
+
+  # package version
+  - type: input
+    id: package-version
+    attributes:
+      label: Package version
+      description: Which package version were you using when you experienced the bug?
+      placeholder: e.g. 0.0.1
+    validations:
+      required: true
+
+  # anything else
+  - type: textarea
+    id: anything-else
+    attributes:
+      label: Anything else?
+      description: If there is something else you would like to bring up that did not seem suitable to be put into the other fields, you may do so below.
+    validations:
+      required: false
+
+  # validations
+  - type: checkboxes
+    id: validations
+    attributes:
+      label: Validations
+      description: Before submitting this issue, please make sure you do the following
+      options:
+        - label: Follow our [Code of Conduct](../../.github/CODE_OF_CONDUCT.md)
+          required: true
+        - label: Read the [Contributing Guidelines](../../.github/CONTRIBUTING.md).
+          required: true
+        - label: Check that there isn't already an issue (open or closed) that is the same to avoid creating a duplicate.
+          required: true

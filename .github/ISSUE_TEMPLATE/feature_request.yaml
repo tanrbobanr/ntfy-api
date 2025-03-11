@@ -1,0 +1,56 @@
+name: Feature Request
+description: Propose a new feature to be added to this project
+title: "[Short summary of the proposal goes here]"
+labels: ["enhancement"]
+body:
+  # thanks
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in the project and taking the time to fill out this feature request!
+  
+  # feature description
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Clear and concise description of the problem
+      description: e.g. As a developer making use of this project, I want [goal / wish] so that [benefit]. If you intend to submit a PR for this issue, tell us in the description. Thanks!
+    validations:
+      required: true
+
+  # suggested solution
+  - type: textarea
+    id: suggested-solution
+    attributes:
+      label: Suggested solution
+      description: We could provide the following implementation...
+    validations:
+      required: true
+
+  # alternatives
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Clear and concise description of any alternative solutions or features you've considered.
+
+  # additional context
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Any other context or screenshots about the feature request.
+
+  # validations
+  - type: checkboxes
+    id: validations
+    attributes:
+      label: Validations
+      description: Before submitting this issue, please make sure you do the following
+      options:
+        - label: Follow our [Code of Conduct](../../.github/CODE_OF_CONDUCT.md)
+          required: true
+        - label: Read the [Contributing Guidelines](../../.github/CONTRIBUTING.md).
+          required: true
+        - label: Check that there isn't already an issue (open or closed) that is the same to avoid creating a duplicate.
+          required: true

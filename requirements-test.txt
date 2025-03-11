@@ -1,0 +1,5 @@
+# requirements for the tox environments
+coverage; python_version >= "3.11"
+coverage[toml]; python_version < "3.11"
+pytest
+mypy
