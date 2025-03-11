@@ -221,12 +221,12 @@ your GitHub user, your contact email, and year/month to the **bottom** of
 would warrant an attribution (i.e. your first code contribution pull request).
 The line should be formatted as follows (using your own details instead):
 
-> `- Tanner Corcoran [@tanrbobanr](https://github.com/tanrbobanr) <tannerbcorcoran@gmail.com> (2024-05)`
+> ``- **Tanner Corcoran** [@tanrbobanr](https://github.com/tanrbobanr) (<tannerbcorcoran@gmail.com>) [`2024-05`]``
 
 If you are not comfortable using your full name, you may instead use your
 GitHub username:
 
-> `- tanrbobanr [@tanrbobanr](https://github.com/tanrbobanr) <tannerbcorcoran@gmail.com> (2024-11)`
+> ``- **tanrbobanr** [@tanrbobanr](https://github.com/tanrbobanr) (<tannerbcorcoran@gmail.com>) [`2024-11`]``
 
 ## Bug Reports
 
