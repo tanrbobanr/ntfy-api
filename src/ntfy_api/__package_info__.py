@@ -200,7 +200,7 @@ class _version_info(tuple[int, int, int, int, int, int]):  # pragma: no cover
         return f"{self.version_str()}{optional_part}"
 
 
-version_info: _version_info = _version_info(0, 0, 6, 0, 0, 0)
+version_info: _version_info = _version_info(1, 0, 0, 1, 0, 0)
 """The version information. In many ways similar to
 :py:obj:`sys.version_info`.
 
